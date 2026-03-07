@@ -8,7 +8,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// --- Enums (Exact Assignment Requirements) ---
+
 
 enum USER_ROLE {
   ADMIN
@@ -33,7 +33,7 @@ enum PROJECT_STATUS {
   COMPLETED
 }
 
-// --- Models ---
+
 
 model User {
   id              Int             @id @default(autoincrement())
@@ -104,7 +104,7 @@ model Task {
 
 model ActivityLog {
   id        Int      @id @default(autoincrement())
-  action    String   // e.g., "Created Task", "Updated Status"
+  action    String   
   details   String?  
   
   userId    Int
