@@ -12,8 +12,12 @@ const dashboardRoutes = require('./src/routes/dashboardRoutes');
 
 const app = express();
 
+// Updated CORS: localhost aur Vercel dono ko allow karne ke liye
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: [
+        'http://localhost:3000',
+        'https://work-trackr-bay.vercel.app' // Aapka live frontend link
+    ],
     credentials: true
 }));
 
@@ -22,8 +26,8 @@ app.use(express.json());
 // API Routes - Assignment ke mutabik singular paths
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/project', projectRoutes); // 'projects' ko 'project' kiya
-app.use('/api/task', taskRoutes); // 'tasks' ko 'task' kiya
+app.use('/api/project', projectRoutes);
+app.use('/api/task', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/', (req, res) => {
@@ -45,5 +49,5 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on PORT: ${PORT}`);
 });
